@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'node:8.11.1-alpine'
+            args '-p 3000:3000 --env NODE_ENV=development --env DATABASE=mongodb://mongodb:27017/playground --env PORT=3000'
+        }
+    }
     environment {
         CI = 'true'
     }
